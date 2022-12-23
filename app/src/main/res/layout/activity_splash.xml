@@ -7,4 +7,19 @@
     android:background="@drawable/img_splash_background"
     tools:context=".SplashActivity">
 
+    <com.example.udemyshopping.textView.BoldTextView
+        android:layout_width="251dp"
+        android:layout_height="233dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:text="The App Is For Lionel Messi"
+        android:textColor="@color/littlewhite"
+        android:textSize="@dimen/splash_title_text_size"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.612"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
