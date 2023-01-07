@@ -23,13 +23,11 @@ class SplashActivity : AppCompatActivity() {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN
             )
         }
-
         Handler(Looper.getMainLooper()).postDelayed({
             // Your Code
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
-        }, 3000)
-
+        }, 1000)
 
     }
 }
