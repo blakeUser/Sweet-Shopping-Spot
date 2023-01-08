@@ -9,13 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.UdemyShopping">
-        <activity
-            android:name=".activity_register"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
+
+
         <activity
             android:name=".activity.SplashActivity"
             android:exported="true"
@@ -23,21 +18,33 @@
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".activity.LoginActivity"
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
-
             <!-- <meta-data -->
             <!-- android:name="android.app.lib_name" -->
             <!-- android:value="" -->
             />
         </activity>
+
+        <activity
+            android:name=".activity.RegisterActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
+            <!--            android:exported="false">-->
+            <!--            <meta-data-->
+            <!--                android:name="android.app.lib_name"-->
+            <!--                android:value="" />-->
+        </activity>
+
+
         <activity
             android:name=".activity.MainActivity"
             android:exported="true"

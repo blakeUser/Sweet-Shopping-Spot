@@ -12,11 +12,10 @@
         android:layout_height="233dp"
         android:gravity="center"
         android:orientation="vertical"
-        android:text="The App Is For Lionel Messi"
+        android:text="This App For球王里奥·梅西"
         android:textColor="@color/littlewhite"
         android:textSize="@dimen/splash_title_text_size"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.612"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
