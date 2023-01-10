@@ -36,17 +36,13 @@ class RegisterActivity : BaseActivity() {
 
         val btn = findViewById<TextView>(R.id.tv_login)
         btn.setOnClickListener {
-            // Launch the register screen when the user clicks on the text.
-            val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
-            startActivity(intent)
+            onBackPressed()
         }
 
         val register_button = findViewById<TextView>(R.id.btn_register)
         register_button.setOnClickListener {
-            // Launch the register screen when the user clicks on the text.
             registerUser()
         }
-
     }
 
 
@@ -133,6 +129,8 @@ class RegisterActivity : BaseActivity() {
                                 "You are registered successfully. Your user id is ${firebaseUser.uid}",
                                 false
                             )
+                            FirebaseAuth.getInstance().signOut()
+                            finish()
                         } else {
                             // If the registering is not successful then show error message.
                             showErrorSnackBar(task.exception!!.message.toString(), true)
