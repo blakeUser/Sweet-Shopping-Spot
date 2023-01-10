@@ -10,7 +10,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.UdemyShopping">
         <activity
-            android:name=".BaseActivity"
+            android:name=".activity.ForgotPasswordActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".activity.BaseActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

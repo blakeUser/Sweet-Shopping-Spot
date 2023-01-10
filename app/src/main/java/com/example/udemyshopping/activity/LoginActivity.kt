@@ -26,7 +26,6 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
-
         binding.tvForgotPassword.setOnClickListener(this)
 
         binding.btnLogin.setOnClickListener(this)
@@ -39,6 +38,8 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
             println("Clicked something")
             when (view.id) {
                 R.id.tv_forgot_password -> {
+                    val intent = Intent(this@LoginActivity, ForgotPasswordActivity::class.java)
+                    startActivity(intent)
                 }
                 R.id.btn_login -> {
                     logInRegisteredUser()
