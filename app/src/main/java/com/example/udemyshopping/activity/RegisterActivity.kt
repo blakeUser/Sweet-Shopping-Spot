@@ -6,6 +6,7 @@ import android.text.TextUtils
 import android.view.WindowManager
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import android.widget.Toolbar
 import com.example.udemyshopping.R
 import com.example.udemyshopping.databinding.ActivityLoginBinding
@@ -44,8 +45,6 @@ class RegisterActivity : BaseActivity() {
             registerUser()
         }
     }
-
-
 
     private fun setupActionBar() {
         setContentView(binding.root)
@@ -103,39 +102,33 @@ class RegisterActivity : BaseActivity() {
     }
 
     private fun registerUser() {
-
         // Check with validate function if the entries are valid or not.
         if (validateRegisterDetails()) {
             showProgressDialog(resources.getString(R.string.please_wait))
-
-            val first_name: String = binding.etFirstName.text.toString().trim { it <= ' ' }
-            val last_name : String = binding.etLastName.text.toString().trim { it <= ' ' }
             val email : String = binding.etEmail.text.toString().trim { it <= ' ' }
             val password : String = binding.etPassword.text.toString().trim { it <= ' ' }
-            val confirm_password : String = binding.etLastName.text.toString().trim { it <= ' ' }
-
             // Create an instance and create a register a user with email and password.
             FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(
                     OnCompleteListener<AuthResult> { task ->
-
                         hideProgressDialog()
-
                         // If the registration is successfully done
                         if (task.isSuccessful) {
                             // Firebase registered user
                             val firebaseUser: FirebaseUser = task.result!!.user!!
-                            showErrorSnackBar(
-                                "You are registered successfully. Your user id is ${firebaseUser.uid}",
-                                false
-                            )
                             FirebaseAuth.getInstance().signOut()
-                            finish()
+                            Toast.makeText(
+                                this@RegisterActivity,
+                                "You are registered successfully. Your user id is ${firebaseUser.uid}",
+                                Toast.LENGTH_LONG
+                            ).show()
+                            onBackPressed()
                         } else {
                             // If the registering is not successful then show error message.
                             showErrorSnackBar(task.exception!!.message.toString(), true)
                         }
                     })
+
         }
     }
 }

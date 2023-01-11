@@ -1,10 +1,14 @@
 package com.example.udemyshopping.activity
+
 import android.app.AlertDialog
-import android.app.Dialog
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.content.ContextCompat
 import com.example.udemyshopping.R
+import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
+
 
 open class BaseActivity : AppCompatActivity() {
 
@@ -31,6 +35,13 @@ open class BaseActivity : AppCompatActivity() {
         }
         snackBar.show()
     }
+
+    open fun showGlobalSnack(cl: CoordinatorLayout?, color: Int, message: String?, context: Context) {
+        val sb = Snackbar.make(cl!!, message!!, BaseTransientBottomBar.LENGTH_LONG)
+        sb.view.setBackgroundColor(ContextCompat.getColor(context, color))
+        sb.show()
+    }
+
     fun showProgressDialog(text: String) {
         val builder = android.app.AlertDialog.Builder(this)
         val view = layoutInflater.inflate(R.layout.dialog_progress,null)
