@@ -10,6 +10,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.UdemyShopping">
         <activity
+            android:name=".activity.UserProfileActivity"
+            android:exported="false"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".activity.ForgotPasswordActivity"
             android:exported="false"
             android:screenOrientation="portrait"
