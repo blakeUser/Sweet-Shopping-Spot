@@ -9,6 +9,7 @@ import com.example.udemyshopping.R
 import com.example.udemyshopping.databinding.ActivityLoginBinding
 import com.example.udemyshopping.firestore.FirestoreClass
 import com.example.udemyshopping.models.User
+import com.example.udemyshopping.utils.Constants
 import com.google.firebase.auth.FirebaseAuth
 
 
@@ -82,6 +83,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
 
         if (user.profileCompleted == 0) {
             val intent = Intent(this@LoginActivity, UserProfileActivity::class.java)
+            intent.putExtra(Constants.EXTRA_USER_DETAILS, user)
             startActivity(intent)
         } else {
             startActivity(Intent(this@LoginActivity, MainActivity::class.java))

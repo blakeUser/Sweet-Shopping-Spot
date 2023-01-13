@@ -1,15 +1,10 @@
 package com.example.udemyshopping.activity
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.WindowManager
-import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
-import android.widget.Toolbar
 import com.example.udemyshopping.R
-import com.example.udemyshopping.databinding.ActivityLoginBinding
 import com.example.udemyshopping.databinding.ActivityRegisterBinding
 import com.example.udemyshopping.firestore.FirestoreClass
 import com.example.udemyshopping.models.User
