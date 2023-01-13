@@ -8,6 +8,7 @@ import com.example.udemyshopping.models.User
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
 import com.example.udemyshopping.activity.RegisterActivity
+import com.example.udemyshopping.activity.UserProfileActivity
 import com.example.udemyshopping.utils.Constants
 import com.google.firebase.auth.FirebaseAuth
 
@@ -98,5 +99,41 @@ class FirestoreClass {
             }
     }
 
+    fun updateUserProfileData(activity: Activity, userHashMap: HashMap<String, Any>) {
+        // Collection Name
+        mFirestore.collection(Constants.USERS)
+            // Document ID against which the data to be updated. Here the document id is the current logged in user id.
+            .document(getCurrentUserID())
+            // A HashMap of fields which are to be updated.
+            .update(userHashMap)
+            .addOnSuccessListener {
+
+                // TODO Step 9: Notify the success result to the base activity.
+                // START
+                // Notify the success result.
+                when (activity) {
+                    is UserProfileActivity -> {
+                        // Call a function of base activity for transferring the result to it.
+                        activity.userProfileUpdateSuccess()
+                    }
+                }
+                // END
+            }
+            .addOnFailureListener { e ->
+
+                when (activity) {
+                    is UserProfileActivity -> {
+                        // Hide the progress dialog if there is any error. And print the error in log.
+                        activity.hideProgressDialog()
+                    }
+                }
+
+                Log.e(
+                    activity.javaClass.simpleName,
+                    "Error while updating the user details.",
+                    e
+                )
+            }
+    }
 
 }
