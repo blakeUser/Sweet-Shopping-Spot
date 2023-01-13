@@ -1,7 +1,11 @@
 package com.example.udemyshopping.activity
 import android.Manifest
+import android.app.Activity
+import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import android.widget.Toast
@@ -12,6 +16,8 @@ import com.example.udemyshopping.models.User
 import com.example.udemyshopping.databinding.ActivityUserProfileBinding
 
 import com.example.udemyshopping.utils.Constants
+import com.myshoppal.utils.GlideLoader
+import java.io.IOException
 
 @Suppress("DEPRECATION")
 class UserProfileActivity : BaseActivity(), View.OnClickListener{
@@ -60,8 +66,7 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener{
                         )
                         == PackageManager.PERMISSION_GRANTED
                     ) {
-
-                        showErrorSnackBar("You already have the storage permission.", false)
+                        Constants.showImageChooser(this@UserProfileActivity)
                     } else {
 
                         /*Requests permissions to be granted to this application. These permissions
@@ -78,6 +83,7 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener{
             }
         }
     }
+
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
@@ -87,8 +93,8 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener{
         if (requestCode == Constants.READ_STORAGE_PERMISSION_CODE) {
             //If permission is granted
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
-                showErrorSnackBar("The storage permission is granted.", false)
+                Constants.showImageChooser(this@UserProfileActivity)
+                // END
             } else {
                 //Displaying another toast if permission is not granted
                 Toast.makeText(
@@ -99,5 +105,36 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener{
             }
         }
     }
+
+    public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == Constants.PICK_IMAGE_REQUEST_CODE) {
+                if (data != null) {
+                    try {
+                        // The uri of selected image from phone storage.
+                        val selectedImageFileUri = data.data!!
+                        GlideLoader(this@UserProfileActivity).loadUserPicture(
+                            selectedImageFileUri,
+                            binding.ivUserPhoto
+                        )
+//                        binding.ivUserPhoto.setImageURI(Uri.parse(selectedImageFileUri.toString()))
+                    } catch (e: IOException) {
+                        e.printStackTrace()
+                        Toast.makeText(
+                            this@UserProfileActivity,
+                            resources.getString(R.string.image_selection_failed),
+                            Toast.LENGTH_SHORT
+                        )
+                            .show()
+                    }
+                }
+            }
+        } else if (resultCode == Activity.RESULT_CANCELED) {
+            // A log is printed when user close or cancel the image selection.
+            Log.e("Request Cancelled", "Image selection cancelled")
+        }
+    }
+
 
 }
