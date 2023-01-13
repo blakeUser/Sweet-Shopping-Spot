@@ -12,7 +12,8 @@
         <activity
             android:name=".activity.UserProfileActivity"
             android:exported="false"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -49,23 +50,15 @@
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
-
-            <!-- <meta-data -->
-            <!-- android:name="android.app.lib_name" -->
-            <!-- android:value="" -->
-            />
         </activity>
+
         <activity
             android:name=".activity.RegisterActivity"
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
-
-            <!-- android:exported="false"> -->
-            <!-- <meta-data -->
-            <!-- android:name="android.app.lib_name" -->
-            <!-- android:value="" /> -->
         </activity>
+
         <activity
             android:name=".activity.MainActivity"
             android:exported="true"

@@ -68,17 +68,25 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
         }
     }
 
-    fun userLoggedInSuccessAndHeadToAmazon(user: User) {
-
+    fun printUserInformation(user: User) {
         Log.i("First Name: ", user.firstName)
         Log.i("Last Name: ", user.lastName)
         Log.i("Email: ", user.email)
+    }
 
-        // Hide the progress dialog.
+
+    fun userLoggedInSuccessAndHeadToAmazon(user: User) {
         hideProgressDialog()
-        // Print the user details in the log as of now.
-        // Redirect the user to Main Screen after log in.
-        startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+
+        printUserInformation(user)
+
+        if (user.profileCompleted == 0) {
+            val intent = Intent(this@LoginActivity, UserProfileActivity::class.java)
+            startActivity(intent)
+        } else {
+            startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+        }
+
         finish()
     }
 
